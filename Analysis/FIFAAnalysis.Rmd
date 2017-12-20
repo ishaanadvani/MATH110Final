@@ -1,0 +1,55 @@
+---
+title: "FIFAAnalysis"
+author: "Ishaan Advani"
+date: "19 December 2017"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is my Analysis MarkDown file. I will address the questions I mentioned in the readme file. 
+
+I will first create a GroupObject
+```{r cars}
+minimum_ovr <- 70
+maximum_ovr <- 80
+minimum_age <- 20
+maximum_age <- 30
+source("FIFAConfig.R")
+data <- load_filtered_dataset()
+GObj1 <- GroupObj(minimum_ovr, maximum_ovr, minimum_age, maximum_age, data)
+```
+
+Now that my Group Object has been created I will try and create an overvalued object that will help in identifying which players are valued at a premium.
+
+```{r pressure, echo=FALSE}
+OvObj1 <- Salary_Ovr(GObj1)
+```
+
+
+Now I will analyse 3 traits for the players valued at a premium and identify the relationship the traits have to the premium ratio. I will do this using regression and ggplot.
+```{r pressure1, echo=FALSE}
+traitlist <- c("Passing", "Pace", "Physical")
+ValuableTraits(OvObj1, traitlist)
+```
+
+Now I will analyse 3 traits for the players valued at a premium and identify the relationship the traits have to the premium ratio. I will do this using regression and ggplot.
+```{r pressure2, echo=FALSE}
+traitlist <- c("Passing", "Pace", "Physical")
+ValuableTraits(OvObj1, traitlist)
+```
+
+I will now move on to analysis from the perspective of different countries/leagues. Each country has a typical playing style that requires more of some attributes and less of other. For example, players in Spain tend to have higher passing abilities than physical abilities in general. I will first create a country object based on a list of countries/leagues I extracted from the group object.
+```{r pressure3, echo=FALSE}
+countrylist <- get_league.Group(GObj1)
+for (i in 1:7)
+{
+print(paste0("The country I'm going to be analysing is ", countrylist[i]))
+countobj <- CountryObj(countrylist[i], data)
+traitlist <- c("Passing", "Pace", "Physical")
+CountryTraits(countobj, traitlist)
+}
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

@@ -1,0 +1,31 @@
+---
+title: "ReadMeFIFA"
+author: "Ishaan Advani"
+date: "19 December 2017"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is my R Markdown Readme.
+
+The dataset I've used is FIFA 18 Player Stats that I obtained from Kaggle. The dataset contains information like speed, value, wages and physical abilities for all the players in the game.
+
+I will perform the following tasks and answer the following questions in my analysis-
+Creating a Group object  - I will restrict my analysis to specific age and overall rating ranges. Players are sometimes valued unfairly after a specific overall rating value.
+
+Creating an Over Valued object - Subsegmenting players who are perhaps valued excessively highly in comparison to the maximum rating they can achieve.
+
+How do some major traits link to how much a club is willing to pay the player?
+
+Creating an Country object (Salary_Ovr) - Subsegmenting players who play in the same league/country. 
+
+How do countries value some of the major skills of a player differently?
+
+How does a players overall rating relate to his major skills?
+
+```{r cars}
+source("FIFAConfig.R")
+```
